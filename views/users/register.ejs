@@ -61,118 +61,101 @@
                             <label><b>Nombre completo:</b></label>
                                 <input 
                                     type="text" 
-                                    name="Name" 
-                                    class="form-control <%= locals.errors && errors.Name ? 'is-invalid' : null %>"
-                                    value="<%= locals.oldData ? oldData.Name : null %>"
+                                    name="name" 
+                                    class="form-control <%= locals.errors && errors.name ? 'is-invalid' : null %>"
+                                    value="<%= locals.oldData ? oldData.name : null %>"
                                 >
-                                <% if (locals.errors && errors.Name) { %>
+                                <% if (locals.errors && errors.name) { %>
                                     <div class="text-danger">
-                                        <%= errors.Name.msg %> 
+                                        <%= errors.name.msg %> 
                                     </div>
                                 <% } %>
                         </div>
 
 
-                            <div class="input-box">
-                                <label><b>Correo electrónico:</b></label>
+                        <div class="input-box">
+                            <label><b>Correo electrónico:</b></label>
+                            <input 
+                                type="text" 
+                                name="email" 
+                                class="form-control <%= locals.errors && errors.email ? 'is-invalid' : null %>"
+                                value="<%= locals.oldData ? oldData.email : null %>"
+                                >
+                            <% if (locals.errors && errors.email) { %>
+                                <div class="text-danger">
+                                    <%= errors.email.msg %>
+                                </div>
+                            <% } %>
+                        </div>
+                        
+
+                        <div class="input-box">
+                            <label><b>Contraseña:</b></label>
                                 <input 
-                                    type="text" 
-                                    name="email" 
-                                    class="form-control <%= locals.errors && errors.email ? 'is-invalid' : null %>"
-                                    value="<%= locals.oldData ? oldData.email : null %>"
-                                >
-                                <% if (locals.errors && errors.email) { %>
-                                    <div class="text-danger">
-                                        <%= errors.email.msg %>
-                                    </div>
-                                <% } %>
-                            </div>
+                                type="password" 
+                                name="password" 
+                                class="form-control <%= locals.errors && errors.password ? 'is-invalid' : null %>"
+                            >
+                            <% if (locals.errors && errors.password) { %>
+                                <div class="text-danger">
+                                    <%= errors.password.msg %>
+                                </div>
+                            <% } %>
                         </div>
 
-
-                            <div class="input-box">
-                                <label><b>Contraseña:</b></label>
-                                <input 
-                                    type="password" 
-                                    name="password" 
-                                    class="form-control <%= locals.errors && errors.password ? 'is-invalid' : null %>"
-                                    value="<%= locals.oldData ? oldData.password : null %>"
-                                >
-                                <% if (locals.errors && errors.password) { %>
-                                    <div class="text-danger">
-                                        <%= errors.password.msg %>
-                                    </div>
-                                <% } %>
-                            </div>
-                        </div>
-
-
-                            <div class="input-box">
-                                <label><b>Ciudad de residencia:</b></label>
+                        <div class="input-box">
+                             <label><b>Ciudad de residencia:</b></label>
+                             <div class="input-box">
                                 <select 
                                     name="city" 
                                     class="form-select <%= locals.errors && errors.city ? 'is-invalid' : null %>"
                                 >
                                     <option value="">Elige tu ciudad de residencia </option>
-                                    <%  
-                                        let cities = ["Barranquilla", "Bogotá", "Bucaramanga", "Cali", "Medellín"];
-                                    %>
-                                    <% for (const oneCity of cities) { %>
-                                        <option 
-                                            value="<%= oneCity %>"
-                                            <%= locals.oldData && (oneCity === oldData.city) ? 'selected' : null %> 
-                                        > <%= oneCity %> </option>
-                                    <% } %>
+                                        <%  
+                                            let cities = ["Barranquilla", "Bogotá", "Bucaramanga", "Cali", "Medellín"];
+                                        %>
+                                        <% for (const oneCity of cities) { %>
+                                            <option 
+                                                value="<%= oneCity %>"
+                                                <%= locals.oldData && (oneCity === oldData.city) ? 'selected' : null %> 
+                                            > <%= oneCity %> </option>
+                                        <% } %>
                                 </select>
-                                <% if (locals.errors && errors.city) { %>
-                                    <div class="text-danger">
-                                        <%= errors.city.msg %>
-                                    </div>
-                                <% } %>
+                                    <% if (locals.errors && errors.city) { %>
+                                        <div class="text-danger">
+                                            <%= errors.city.msg %>
+                                        </div>
+                                    <% } %>
                             </div>
                         </div>
-
-
-
-
-
-
+                
+                        <div class="input-box">
+                            <label><b>Imagen de perfil:</b></label>
+                            <input 
+                                type="file" 
+                                name="avatar"
+                                class="form-control <%= locals.errors && errors.avatar ? 'is-invalid' : null %>"
+                            >
+                            <% if (locals.errors && errors.avatar) { %>
+                                <div class="text-danger">
+                                    <%= errors.avatar.msg %>
+                                </div>
+                            <% } %>
+                        </div>
+                    
                     </div>
 
-
-
-
-
-
-
-
-
-                        <div class="input-box">
-                            <input type="text" name="Last name" id="formLastName" placeholder="Apellido" required>
+                        <div class="col-12 my-5">
+                            <button type="submit" class="btn btn-primary">Crear tu cuenta</button>
                         </div>
-                        <div class="input-box">
-                            <input type="email" id="email" name="email" placeholder="Email" required>
-                        </div>
-                        <div class="input-box">
-                            <input type="text" name="Phone number" id="formNumber" placeholder="Nro. de teléfono" required>
-                        </div>
-                        <div class="input-box">
-                            <input type="password" id="password" name="password" placeholder="Contraseña" required>
-                        </div>
-                        <div class="input-box">
-                            <input type="password" id="passwordRepeat" name="passwordRepeat" placeholder="Repetir contraseña" required>
-                        </div>
-                    </div>
 
-
-
-
-
-
-                    <button type="submit">Crear tu cuenta</button>
                 </form>
-                <p>Ya tenes tu cuenta? Ingresa <a href="login">aquí</a>.</p>
+
+
+                    <p>¿Ya tienes tu cuenta? Ingresa <a href="login">aquí</a>.</p>
             </div>
+
+             
 
 
 
