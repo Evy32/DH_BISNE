@@ -1,7 +1,7 @@
 const controller = {
-    administrar: (req, res) => {
-        res.render('admin/administrar')
+    index: (req, res) => {
+        return res.render('index')
     }
 }
 
-module.exports = controller
+module.exports = controller;

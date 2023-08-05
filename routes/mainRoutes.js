@@ -12,10 +12,16 @@ const guestMiddleware = require('../middlewares/guestMiddleware');
 const authMiddleware = require('../middlewares/authMiddleware');
 
 //Formulario de Registro
-router.get('/users/register', mainController.register);
+router.get('/users/register', guestMiddleware, mainController.register);
 
 // Procesa Formulario Register
 router.post('/users/register', uploadFile.single('avatar'), validations, mainController.processRegister);
+
+//Formulario de Login
+router.get('/login', guestMiddleware, mainController.login);
+
+// Procesa Formulario Login
+router.post('/login', mainController.loginProcess);
 
 //Formulario de NewProducts
 router.get('/newProducts', mainController.newProducts);
@@ -23,19 +29,21 @@ router.get('/newProducts', mainController.newProducts);
 // Procesar Formulario New Products 
 router.post('/newProducts', uploadFile.single('avatar'), validations, mainController.processNewProducts);
 
+// Perfil de usuario
+router.get('/users/profile', authMiddleware, mainController.profile);
+
 //Otros Get
 
 router.get('/', mainController.index);
 router.get('/index', mainController.index);
-router.get('/login', mainController.login);
 router.get('/signup', mainController.signup);
 router.get('/productCart', mainController.productCart);
 router.get('/productDetail', mainController.productDetail);
 router.get('/categories', mainController.categories);
 
+//Logout
+router.get('/logout', mainController.logout);
 
 
-// Procesar Formulario Login
-router.post('/login', validations, mainController.processLogin);
 
 module.exports = router;
