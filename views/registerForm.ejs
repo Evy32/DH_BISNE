@@ -8,16 +8,16 @@
         <link rel="stylesheet" href="/css/login.css">
         <link rel="stylesheet" href="/css/signup.css">
     
-        <%- include('../partials/header.ejs')%>
+        <%- include('./partials/header.ejs')%>
         
         <body>
-            <%- include('../partials/sidebar.ejs')%>
+            <%- include('./partials/sidebar.ejs')%>
 
         <!--Register form --> 
 
     
             <div class="form">
-                <form method="POST" action="/users/register" enctype="multipart/form-data">
+                <form method="POST" action="/user/register" enctype="multipart/form-data">
                     <div class="inputs">
                         <div class="input-box">
                             <label><b>Nombre completo:</b></label>
@@ -25,7 +25,7 @@
                                     type="text" 
                                     name="fullName" 
                                     class="form-control <%= locals.errors && errors.fullName ? 'is-invalid' : null %>"
-                                    value="<%= locals.oldData ? oldData.fullName : null %>" 
+                                    value="<%= locals.oldData ? oldData.fullName : null %>"
                                 >
                                 <% if (locals.errors && errors.fullName) { %>
                                     <div class="text-danger">
@@ -33,6 +33,7 @@
                                     </div>
                                 <% } %>
                         </div>
+
 
 
                         <div class="input-box">
@@ -114,10 +115,10 @@
                 </form>
 
 
-                    <p>¿Ya tienes tu cuenta? Ingresa <a href="login">aquí</a>.</p>
+                    <p>¿Ya tienes tu cuenta? Ingresa <a href="/user/login">aquí</a>.</p>
             </div>
 
              
-            <%- include('../partials/footer')%>
+            <%- include('./partials/footer')%>
         </body>
 </html>

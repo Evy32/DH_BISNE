@@ -10,7 +10,6 @@ const PORT = 4000;
 
 const userLoggedMiddleware = require('./middlewares/userLoggedMiddleware');
 
-
 app.use(session({
     secret: "Secret, revisar",
     resave: false,
@@ -26,19 +25,21 @@ app.use(express.urlencoded({extended:false}));
 
 app.use(express.static(path.resolve(__dirname, './public')));
 
+app.listen(PORT, () => console.log("Listening on http://localhost:" + PORT));
 
 //Template Engine
 app.set("view engine", "ejs");
 
 // Routers
-const mainRoutes = require('./routes/mainRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const mainRoutes = require('./routes/mainRoutes');
 
 
-app.use('/', mainRoutes);
-app.use('/administrar', adminRoutes);
 
-app.listen(PORT, () => console.log("Listening on http://localhost:" + PORT));
+app.use('/', adminRoutes);
+app.use('/user', mainRoutes);
+
+
 
 // Error 404 
 //app.use((req,res,next)=>{

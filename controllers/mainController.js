@@ -7,13 +7,13 @@ const User = require('../models/User');
 
 const controller = {
 	register: (req, res) => {
-        return res.render('users/register');
+        return res.render('registerForm');
     },
 	processRegister: (req, res) => {
 		const resultValidation = validationResult(req);
 		
 		if (resultValidation.errors.length > 0) {
-			return res.render('users/register', {
+			return res.render('registerForm', {
 				errors: resultValidation.mapped(),
 				oldData: req.body
 			});
@@ -21,7 +21,7 @@ const controller = {
 		let userInDB = User.findByField('email', req.body.email);
 
 		if (userInDB) {
-			return res.render('users/register', {
+			return res.render('registerForm', {
 				errors: {
 					email: {
 						msg: 'Este email ya está registrado'
@@ -38,7 +38,7 @@ const controller = {
 		}
 
 		let userCreated = User.create(userToCreate);
-		return res.redirect('/users/login');
+		return res.redirect('/user/login');
 	},
 
     newProducts: (req, res) => {
@@ -72,7 +72,7 @@ const controller = {
 				if(req.body.remember_user) {
 					res.cookie('userEmail', req.body.email, { maxAge: (1000 * 60) * 60 })
 				}
-				return res.redirect('/users/profile');
+				return res.redirect('/user/profile');
 			} 
 			return res.render('loginForm', {
 				errors: {
@@ -93,7 +93,7 @@ const controller = {
 
 	},
 	profile: (req, res) => {
-		return res.render('users/profile', {
+		return res.render('profile', {
 			user: req.session.userLogged
 		});
     },
@@ -105,9 +105,6 @@ const controller = {
 
 	index: (req, res) => {
         res.render('index')
-    },
-    signup: (req, res) => {
-        res.render('users/signup')
     },
           
     productCart: (req, res) => {

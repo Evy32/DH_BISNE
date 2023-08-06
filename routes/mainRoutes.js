@@ -12,10 +12,10 @@ const guestMiddleware = require('../middlewares/guestMiddleware');
 const authMiddleware = require('../middlewares/authMiddleware');
 
 //Formulario de Registro
-router.get('/users/register', guestMiddleware, mainController.register);
+router.get('/register', guestMiddleware, mainController.register);
 
 // Procesa Formulario Register
-router.post('/users/register', uploadFile.single('avatar'), validations, mainController.processRegister);
+router.post('/register', uploadFile.single('avatar'), validations, mainController.processRegister);
 
 //Formulario de Login
 router.get('/login', guestMiddleware, mainController.login);
@@ -30,19 +30,18 @@ router.get('/newProducts', mainController.newProducts);
 router.post('/newProducts', uploadFile.single('avatar'), validations, mainController.processNewProducts);
 
 // Perfil de usuario
-router.get('/users/profile', authMiddleware, mainController.profile);
+router.get('/profile/', authMiddleware, mainController.profile);
 
 //Otros Get
 
 router.get('/', mainController.index);
 router.get('/index', mainController.index);
-router.get('/signup', mainController.signup);
 router.get('/productCart', mainController.productCart);
 router.get('/productDetail', mainController.productDetail);
 router.get('/categories', mainController.categories);
 
 //Logout
-router.get('/logout', mainController.logout);
+router.get('/logout/', mainController.logout);
 
 
 
